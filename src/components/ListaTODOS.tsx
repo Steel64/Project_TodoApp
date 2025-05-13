@@ -13,7 +13,7 @@ const ListaTODOS = (props: ListaTODOS) => {
         <ul className="list-group">
             {
                 props.TODOS.map((elemento:ToDo)=> {
-                    return <li className="list-group-item d-flex justify-content-between align-items-start">
+                    return <li className="list-group-item d-flex justify-content-between align-items-start" key={elemento.id}>
                         <div className="ms-2 me-auto">
                             { elemento.descripcion }
                         </div>

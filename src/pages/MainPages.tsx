@@ -1,19 +1,24 @@
+import { useState } from "react"
 import Formulario from "../components/Formulario"
 import ListaTODOS, { type ToDo } from "../components/ListaTODOS"
 import Navegacion from "../components/Navegacion"
 import Titulo from "../components/Titulo"
 
 const MainPage = () => {
-    const listaTODOS : ToDo[] = [
-        {id: 1, descripcion: "Ir al cine"},
-        {id: 2, descripcion: "Ecribir un libro"},
-        {id: 3, descripcion: "Hornear pastel"},
-        {id: 4, descripcion: "Crear app"}
-    ]
+    const [listaTODOS,setlistaTODOS] = useState<ToDo[]>([])
+
+    const agregarTODOS = ( texto: string) => {
+        listaTODOS.push({
+            id: listaTODOS.length + 1,
+            descripcion: texto
+        })
+        setlistaTODOS([...listaTODOS])
+    }
+
     return <div className="container">
         <Titulo texto="TODO App-main" />
         <Navegacion />
-        <Formulario />
+        <Formulario agregar={agregarTODOS}/>
         <ListaTODOS TODOS={listaTODOS}/>
     </div>
 }
