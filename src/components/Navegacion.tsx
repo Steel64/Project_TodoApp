@@ -1,16 +1,18 @@
+import { Link } from "react-router-dom"
+
 const Navegacion = () => {
     return <div>
         { /* Seccion de tabs */ }
         <ul className="nav nav-underline">
             <li className="nav-item">
-                <a className="nav-link active" href="#">
+                <Link className="nav-link" to={"/"}>
                     Tareas
-                </a>
+                </Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">
-                    Terminadas
-                </a>
+                <Link className="nav-link" to={"/historico"}>
+                    Historico
+                </Link>
             </li>
         </ul>
     </div>
