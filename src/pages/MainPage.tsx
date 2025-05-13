@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Formulario from "../components/Formulario"
 import ListaTODOS, { type ToDo } from "../components/ListaTODOS"
-import Navegacion from "../components/Navegacion"
+import Navegacion, { Pagina } from "../components/Navegacion"
 import Titulo from "../components/Titulo"
 
 const MainPage = () => {
@@ -17,7 +17,7 @@ const MainPage = () => {
 
     return <div className="container">
         <Titulo texto="TODO App-main" />
-        <Navegacion />
+        <Navegacion pagina={Pagina.Main}/>
         <Formulario agregar={agregarTODOS}/>
         <ListaTODOS TODOS={listaTODOS} esHistorico={false}/>
     </div>

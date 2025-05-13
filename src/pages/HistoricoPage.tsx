@@ -1,5 +1,5 @@
 import ListaTODOS, { type ToDo } from "../components/ListaTODOS"
-import Navegacion from "../components/Navegacion"
+import Navegacion, { Pagina } from "../components/Navegacion"
 import Titulo from "../components/Titulo"
 
 const HistoricoPage = () => {
@@ -8,7 +8,7 @@ const HistoricoPage = () => {
     ]
     return <div className="container">
         <Titulo texto="TODO - Historico" />
-        <Navegacion />
+        <Navegacion pagina={Pagina.Historico}/>
         <ListaTODOS TODOS={listaHistorico} esHistorico={true}/>
     </div>
 }
