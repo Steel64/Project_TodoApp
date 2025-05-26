@@ -23,6 +23,7 @@ const Formulario = (props:FormularioProps) => {
                 type="button"
                 onClick={ () => {
                     props.agregar(textoTODO)
+
                     setTextoTODO("")
                 }}
             >

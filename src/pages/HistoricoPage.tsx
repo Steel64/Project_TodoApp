@@ -7,7 +7,7 @@ const HistoricoPage = () => {
         {id:1, descripcion: "estudiar"}
     ]
     return <div className="container">
-        <Titulo texto="TODO - Historico" />
+        <Titulo texto="TODO - Historico" pagina={Pagina.Historico}/>
         <Navegacion pagina={Pagina.Historico}/>
         <ListaTODOS TODOS={listaHistorico} esHistorico={true}/>
     </div>

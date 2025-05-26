@@ -5,18 +5,26 @@ import Navegacion, { Pagina } from "../components/Navegacion"
 import Titulo from "../components/Titulo"
 
 const MainPage = () => {
-    const [listaTODOS,setlistaTODOS] = useState<ToDo[]>([])
-
+    const listaPersistenteStr = localStorage.getItem("TODOS")
+    let listaPersistente : ToDo[]
+    if (listaPersistenteStr == null){
+        listaPersistente = []
+    } else {
+        listaPersistente = JSON.parse(listaPersistenteStr)
+    }
+    const [listaTODOS,setlistaTODOS] = useState<ToDo[]>(listaPersistente)
     const agregarTODOS = ( texto: string) => {
+        console.log("aca")
         listaTODOS.push({
             id: listaTODOS.length + 1,
             descripcion: texto
         })
+        localStorage.setItem("TODOS",JSON.stringify(listaTODOS))
         setlistaTODOS([...listaTODOS])
     }
 
     return <div className="container">
-        <Titulo texto="TODO App-main" />
+        <Titulo texto="TODO App-main" pagina={Pagina.Main}/>
         <Navegacion pagina={Pagina.Main}/>
         <Formulario agregar={agregarTODOS}/>
         <ListaTODOS TODOS={listaTODOS} esHistorico={false}/>
