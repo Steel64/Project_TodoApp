@@ -5,7 +5,7 @@ import Navegacion, { Pagina } from "../components/Navegacion"
 import Titulo from "../components/Titulo"
 
 const MainPage = () => {
-    const listaPersistenteStr = localStorage.getItem("TODOS")
+    const listaPersistenteStr = sessionStorage.getItem("TODOS")
     let listaPersistente : ToDo[]
     if (listaPersistenteStr == null){
         listaPersistente = []
@@ -19,7 +19,7 @@ const MainPage = () => {
             id: listaTODOS.length + 1,
             descripcion: texto
         })
-        localStorage.setItem("TODOS",JSON.stringify(listaTODOS))
+        sessionStorage.setItem("TODOS",JSON.stringify(listaTODOS))
         setlistaTODOS([...listaTODOS])
     }
 

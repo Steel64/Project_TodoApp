@@ -27,7 +27,7 @@ const Titulo = (props: TituloProps) => {
                             type="button"
                             onClick={()=>{ 
                                 navegate("/") 
-                                //sessionStorage.removeItem("TODOS")
+                                sessionStorage.removeItem("TODOS")
                             }}
                         >
                             Regresar
