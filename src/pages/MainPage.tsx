@@ -4,7 +4,7 @@ import ListaTODOS, { type ToDo } from "../components/ListaTODOS"
 import Navegacion, { Pagina } from "../components/Navegacion"
 import Titulo from "../components/Titulo"
 
-const URL = "https://script.google.com/macros/s/AKfycbxR06kwYzBmVIy9NoLCq1ddnLj4PIT9uGvPNiK_I5aAob7qrYUs-Q7XPfLab3Lk1ZD9KQ/exec"
+const URL = "http://localhost:5000"
 
 const MainPage = () => {
     /*
@@ -20,9 +20,8 @@ const MainPage = () => {
     //funcion asicrona
     const httpObtenerTODOSAsyncAwait = async () => {
         try{
-            const resp = await fetch(URL)
+            const resp = await fetch(`${URL}/todos`)
             const data = await resp.json()
-            console.log(data)
             setlistaTODOS(data)
         }catch(error){
             console.error(error)
@@ -30,9 +29,12 @@ const MainPage = () => {
     }
     //la peticion en fetch como post, body debe enviarse como string(formato JSON  del sevidor)
     const httpGuardarTODO = async (todo: ToDo) => {
-        const resp = await fetch(URL, {
+        const resp = await fetch(`${URL}/todos`, {
             method: "POST",
-            body: JSON.stringify(todo)
+            body: JSON.stringify(todo),
+            headers : {
+                "content-type" : "application/json"
+            }
         })
         const data = await resp.json()
     }
@@ -41,17 +43,18 @@ const MainPage = () => {
         httpObtenerTODOSAsyncAwait()
     }, [])
 
-    const agregarTODOS = ( texto: string) => {
-        console.log("aca")
-        httpGuardarTODO({
-            id: listaTODOS.length + 1,
+    const agregarTODOS = async ( texto: string) => {
+        await httpGuardarTODO({
             descripcion: texto
         })
+        await httpObtenerTODOSAsyncAwait()
+        /*
         listaTODOS.push({
             id: listaTODOS.length + 1,
             descripcion: texto
         })
         setlistaTODOS([...listaTODOS])
+        */
     }
 
     return <div className="container">
